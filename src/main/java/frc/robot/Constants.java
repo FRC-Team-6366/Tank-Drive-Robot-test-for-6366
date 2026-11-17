@@ -8,7 +8,8 @@ public class Constants {
     public static double timeToTurn = 1.8;
     public static double endOfTurn = 3.7;
     public static double timeToStop = 5.2+0.5;
-
     public static double driveSpeed = 0.6;
     public static double turnSpeed = 0.3;
+
+    public static int intakeMotorId = 3;
 }

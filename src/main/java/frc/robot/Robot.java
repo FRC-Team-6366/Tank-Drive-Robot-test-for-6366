@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
 
   private Joystick joystick = new Joystick(0);
   private Drivetrain driveTrain = new Drivetrain();
+  private Intake intake = new Intake(Constants.intakeMotorId, 0.6);
 
   private double startTime;
 
@@ -41,10 +42,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     double time = Timer.getFPGATimestamp();
-    double decrease = 0.1;
     if (time - startTime < Constants.timeToTurn) {
 
       driveTrain.drive(Constants.driveSpeed);
+      intake.startRollersIntake();
 
     } else if (time - startTime < Constants.endOfTurn) {
 
