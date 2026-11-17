@@ -11,5 +11,8 @@ public class Constants {
     public static double driveSpeed = 0.6;
     public static double turnSpeed = 0.3;
 
+
+    // Intake constants
     public static int intakeMotorId = 3;
+    public static double intakeSpeed = 0.6;
 }

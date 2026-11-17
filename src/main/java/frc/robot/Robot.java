@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 
   private Joystick joystick = new Joystick(0);
   private Drivetrain driveTrain = new Drivetrain();
-  private Intake intake = new Intake(Constants.intakeMotorId, 0.6);
+  private Intake intake = new Intake(Constants.intakeMotorId, Constants.intakeSpeed);
 
   private double startTime;
 
