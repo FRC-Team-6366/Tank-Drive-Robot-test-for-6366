@@ -13,13 +13,13 @@ public class Intake {
      * @param speed this is the speed that the motor will run at when it is activated
      */
     public Intake(int motorID, double speed) {
-        if (speed >1){  // ensures we aren't sending a speed that the motors are unable to handle
-            speed = 1;
-        }
+        if (speed>1.0){  // ensures we aren't sending a speed that the motors are unable to handle
+            speed = 1.0;
+        };
 
-        if (speed < -1) {
-            speed = -1;   // ensures we arent sending a speed that the motors are unable to handle
-        }
+        if (speed < -1.0) {
+            speed = -1.0;   // ensures we arent sending a speed that the motors are unable to handle
+        };
 
         this.rollerSpeed = speed;
         this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
