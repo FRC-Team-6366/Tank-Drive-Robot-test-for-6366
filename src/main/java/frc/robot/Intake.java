@@ -22,7 +22,7 @@ public class Intake {
         }
 
         this.rollerSpeed = speed;
-        this.intakeMotor = new SparkMax(motorID, null);
+        this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
     }
 
     /**

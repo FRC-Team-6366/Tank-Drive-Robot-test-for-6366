@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 public class Constants {
     /**
      * this is the variable that defines the amount of time the robot
@@ -15,4 +17,5 @@ public class Constants {
     // Intake constants
     public static int intakeMotorId = 3;
     public static double intakeSpeed = 0.6;
+    public static MotorType intakeMotorType = MotorType.kBrushed;
 }
