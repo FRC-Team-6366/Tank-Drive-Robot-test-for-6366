@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
       driveTrain.drive(Constants.driveSpeed);
     } else {
       driveTrain.drive(0, 0);
+      intake.stopRollers(); 
     }
 
   }
