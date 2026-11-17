@@ -53,7 +53,13 @@ public class Robot extends TimedRobot {
     } else if (time - startTime < Constants.timeToStop) {
 
       driveTrain.drive(Constants.driveSpeed);
-    } else {
+    } else if (time - startTime < Constants.timeToUTurn) {
+      driveTrain.drive(-Constants.turnSpeed +0.06, Constants.turnSpeed);
+    } else if (time - startTime < Constants.endOfUTurn) {
+      driveTrain.drive(Constants.turnSpeed, -Constants.turnSpeed);
+    } else if (time - startTime < Constants.timeToStopAfterUTurn) {
+      driveTrain.drive(Constants.driveSpeed);
+    } else { 
       driveTrain.drive(0, 0);
     }
 
