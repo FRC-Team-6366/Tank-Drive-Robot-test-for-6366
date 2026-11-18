@@ -36,7 +36,7 @@ public class Intake {
 
         this.rollerSpeed = speed;
         this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
-        
+
         // temporary values for timed rollers and rumble
         this.timedIntakeRolling = false;
         this.timedIntakeRollingDirection = false;
@@ -149,12 +149,13 @@ public class Intake {
                         intakeMotor.set(-rollerSpeed);// backward
                     }
                 } else { // change since we hit interval
-                    rumblingCurrentDirection=false;
+                    rumblingCurrentDirection=!rumblingCurrentDirection; // swaps value
                     if (rumblingCurrentDirection == true) { 
                         intakeMotor.set(rollerSpeed); // foward
                     } else {
                         intakeMotor.set(-rollerSpeed);// backward
                     }
+                    rumblingTimeSinceChanged = Timer.getFPGATimestamp();
                 }
             } else {
                 stopRollers(); // stop cause we hit duration
