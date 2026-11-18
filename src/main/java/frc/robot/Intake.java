@@ -5,7 +5,20 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Intake {
-    double rollerSpeed;
+    double startTime; // value for time based roller functions
+
+    boolean timedIntakeRolling; // timed roller constants
+    boolean timedIntakeRollingDirection; // true = fowards, false = backwards
+    double timedIntakeDuration;
+
+    boolean rumbling; // is it rumbling 
+    boolean rumblingCurrentDirection; // current direction, in or out. true = fowards, false = backwards
+    double rumblingDuration; // duration to run
+    double rumblingInterval; // time between changing
+    double rumblingTimeSinceChanged;
+
+
+    double rollerSpeed;  // motor constants
     SparkMax intakeMotor;
     /**
      * @Author Tripp Collins
@@ -23,6 +36,13 @@ public class Intake {
 
         this.rollerSpeed = speed;
         this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
+        this.timedIntakeRolling = false;
+        this.timedIntakeRollingDirection = false;
+        this.timedIntakeDuration = 0.0;
+        this.rumbling = false;
+        this.rumblingCurrentDirection = false;
+        this.rumblingDuration = 0.0;
+        this.startTime = 0.0;
     }
 
     /**
@@ -47,13 +67,17 @@ public class Intake {
      * @param seconds the amount of time the rollers should run for
      */
     public void startTimedRollersIntake(double seconds) {
-        double startTime = Timer.getFPGATimestamp();   // starting time 
+        /*double startTime = Timer.getFPGATimestamp();   // starting time 
         double currentTime = Timer.getFPGATimestamp();
         while ((currentTime-startTime) < seconds) {  // if we havent completed the time, continue running
             intakeMotor.set(rollerSpeed);
             currentTime = Timer.getFPGATimestamp();
         }
-        intakeMotor.set(0); // stops the intake after we have completed the time
+        intakeMotor.set(0); // stops the intake after we have completed the time*/
+        startTime = Timer.getFPGATimestamp();
+        timedIntakeDuration = seconds;
+        timedIntakeRollingDirection = true;
+        timedIntakeRolling = true;
     }
 
     /**
@@ -62,20 +86,77 @@ public class Intake {
      * @param seconds the amount of time the rollers should run for
      */
     public void startTimedRollersOuttake(double seconds) {
-        double startTime = Timer.getFPGATimestamp();       // starting time
+        /*double startTime = Timer.getFPGATimestamp();       // starting time
         double currentTime = Timer.getFPGATimestamp();
         while ((currentTime-startTime) < seconds) {      // if we havent completed the time, continue running
             intakeMotor.set(-rollerSpeed);
         }
-        intakeMotor.set(0); // stops the intake after we have completed the time
+        intakeMotor.set(0); // stops the intake after we have completed the time*/
+        startTime = Timer.getFPGATimestamp();
+        timedIntakeDuration = seconds;
+        timedIntakeRollingDirection = false;
+        timedIntakeRolling = true;
     }
 
+    /** This rumbles the roller back and forth to get balls unstuck
+     * @Author Tripp Collins
+     * @param seconds the amount of time intake should rumble for
+     * @param interval the amount of time between changing roller direction
+     */
+    public void rumbleRollers(double seconds, double interval) {
+        startTime = Timer.getFPGATimestamp();
+        rumblingCurrentDirection = true;
+        rumblingDuration = seconds;
+        rumblingInterval = interval;
+        rumbling = true;
+    }
     /**
      * Stops the rollers from spining
      * @Author Tripp Collins
      */
     public void stopRollers() {
+        timedIntakeRolling = false;
+        rumbling = false;
         intakeMotor.set(0); // sets the speed to 0
 
+    }
+
+    /**
+     * Intake periodic to ensure we dont hang the robot on a while loop
+     * @Author Tripp Collins
+     */
+    public void intakePeriodic() {
+        if (timedIntakeRolling == true) {
+            if ((Timer.getFPGATimestamp() - startTime) < timedIntakeDuration) { // if we havent hit duration, continue
+                if (timedIntakeRollingDirection) {
+                    intakeMotor.set(rollerSpeed);  // foward
+                } else {
+                    intakeMotor.set(-rollerSpeed);// backward
+                }
+            } else {
+                stopRollers(); // stop cause we hit the duration, disables timedIntakeRolling
+            }
+        }
+
+        if (rumbling == true) {
+            if ((Timer.getFPGATimestamp() - startTime) < rumblingDuration) { // if we havent hit duration, continue
+                if (Timer.getFPGATimestamp()-rumblingTimeSinceChanged < rumblingInterval) { // if we havent hit interval changing point then keep going
+                    if (rumblingCurrentDirection == true) {
+                        intakeMotor.set(rollerSpeed); // foward
+                    } else {
+                        intakeMotor.set(-rollerSpeed);// backward
+                    }
+                } else { // change since we hit interval
+                    rumblingCurrentDirection=false;
+                    if (rumblingCurrentDirection == true) { 
+                        intakeMotor.set(rollerSpeed); // foward
+                    } else {
+                        intakeMotor.set(-rollerSpeed);// backward
+                    }
+                }
+            } else {
+                stopRollers(); // stop cause we hit duration
+            }
+        }
     }
 }
