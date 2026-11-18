@@ -26,12 +26,12 @@ public class Intake {
      * @param speed this is the speed that the motor will run at when it is activated
      */
     public Intake(int motorID, double speed) {
-        if (speed >1){  // ensures we aren't sending a speed that the motors are unable to handle
-            speed = 1;
+        if (speed >1.0){  // ensures we aren't sending a speed that the motors are unable to handle
+            speed = 1.0;
         }
 
-        if (speed < -1) {
-            speed = -1;   // ensures we arent sending a speed that the motors are unable to handle
+        if (speed < -1.0) {
+            speed = -1.0;   // ensures we arent sending a speed that the motors are unable to handle
         }
 
         this.rollerSpeed = speed;
@@ -76,10 +76,12 @@ public class Intake {
             currentTime = Timer.getFPGATimestamp();
         }
         intakeMotor.set(0); // stops the intake after we have completed the time*/
-        startTime = Timer.getFPGATimestamp();
-        timedIntakeDuration = seconds;
-        timedIntakeRollingDirection = true;
-        timedIntakeRolling = true;
+        if (seconds>0){
+            startTime = Timer.getFPGATimestamp();
+            timedIntakeDuration = seconds;
+            timedIntakeRollingDirection = true;
+            timedIntakeRolling = true;
+        }
     }
 
     /**
@@ -94,10 +96,12 @@ public class Intake {
             intakeMotor.set(-rollerSpeed);
         }
         intakeMotor.set(0); // stops the intake after we have completed the time*/
-        startTime = Timer.getFPGATimestamp();
-        timedIntakeDuration = seconds;
-        timedIntakeRollingDirection = false;
-        timedIntakeRolling = true;
+        if (seconds>0){
+            startTime = Timer.getFPGATimestamp();
+            timedIntakeDuration = seconds;
+            timedIntakeRollingDirection = false;
+            timedIntakeRolling = true;
+        }
     }
 
     /** This rumbles the roller back and forth to get balls unstuck
@@ -106,11 +110,13 @@ public class Intake {
      * @param interval the amount of time between changing roller direction
      */
     public void rumbleRollers(double seconds, double interval) {
-        startTime = Timer.getFPGATimestamp();
-        rumblingCurrentDirection = true;
-        rumblingDuration = seconds;
-        rumblingInterval = interval;
-        rumbling = true;
+        if (seconds>0 && interval > 0) {
+            startTime = Timer.getFPGATimestamp();
+            rumblingCurrentDirection = true;
+            rumblingDuration = seconds;
+            rumblingInterval = interval;
+            rumbling = true;
+        }
     }
     /**
      * Stops the rollers from spining
