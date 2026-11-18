@@ -36,6 +36,8 @@ public class Intake {
 
         this.rollerSpeed = speed;
         this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
+        
+        // temporary values for timed rollers and rumble
         this.timedIntakeRolling = false;
         this.timedIntakeRollingDirection = false;
         this.timedIntakeDuration = 0.0;
