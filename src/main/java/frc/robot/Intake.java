@@ -3,7 +3,10 @@ package frc.robot;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj.Timer;
-
+ 
+/** Class to control intake roller on the robot.
+ * @author Tripp Collins 
+ */
 public class Intake {
     double startTime; // value for time based roller functions
 
@@ -28,11 +31,11 @@ public class Intake {
     public Intake(int motorID, double speed) {
         if (speed >1.0){  // ensures we aren't sending a speed that the motors are unable to handle
             speed = 1.0;
-        }
-
+        };
+        
         if (speed < -1.0) {
             speed = -1.0;   // ensures we arent sending a speed that the motors are unable to handle
-        }
+        };
 
         this.rollerSpeed = speed;
         this.intakeMotor = new SparkMax(motorID, Constants.intakeMotorType);
@@ -151,6 +154,7 @@ public class Intake {
                 if (Timer.getFPGATimestamp()-rumblingTimeSinceChanged < rumblingInterval) { // if we havent hit interval changing point then keep going
                     if (rumblingCurrentDirection == true) {
                         intakeMotor.set(rollerSpeed); // foward
+                        
                     } else {
                         intakeMotor.set(-rollerSpeed);// backward
                     }

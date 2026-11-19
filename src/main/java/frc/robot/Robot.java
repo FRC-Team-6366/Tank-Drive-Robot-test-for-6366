@@ -42,21 +42,22 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+    System.out.println(intake.rumblingCurrentDirection);
     double time = Timer.getFPGATimestamp();
     if (time - startTime < Constants.timeToTurn) {
 
-      driveTrain.drive(Constants.driveSpeed);
-      intake.startRollersIntake();
+      //driveTrain.drive(Constants.driveSpeed);
+      intake.rumbleRollers(10, 2);
 
     } else if (time - startTime < Constants.endOfTurn) {
 
-      driveTrain.drive(-Constants.turnSpeed +0.06, Constants.turnSpeed);
+      //driveTrain.drive(-Constants.turnSpeed +0.06, Constants.turnSpeed);
 
     } else if (time - startTime < Constants.timeToStop) {
 
-      driveTrain.drive(Constants.driveSpeed);
+      //driveTrain.drive(Constants.driveSpeed);
     } else {
-      driveTrain.drive(0, 0);
+      //driveTrain.drive(0, 0);
       intake.stopRollers(); 
     }
 
