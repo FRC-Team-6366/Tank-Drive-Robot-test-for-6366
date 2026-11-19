@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+
 public class Constants {
     /**
      * this is the variable that defines the amount of time the robot
@@ -11,4 +14,7 @@ public class Constants {
 
     public static double driveSpeed = 0.6;
     public static double turnSpeed = 0.3;
+    public static double armleftMotorid=4;
+    public static double armrightMotorid=5;
+    public static double armspeed=0.4;
 }

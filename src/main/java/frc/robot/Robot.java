@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   public Robot() {
   }
 
-  private Joystick joystick = new Joystick(0);
+  private XboxController xboxController  = Stick();
   private Drivetrain driveTrain = new Drivetrain();
 
   private double startTime;
@@ -65,6 +65,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    double armspeed = -joystick.getX()
     double speed = -joystick.getRawAxis(4) * 0.3;
     double turn = -joystick.getRawAxis(1) * 0.5;
 
