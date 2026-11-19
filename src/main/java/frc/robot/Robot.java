@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    intake.intakePeriodic();
   }
 
   @Override
@@ -41,11 +42,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+    System.out.println(intake.rumblingCurrentDirection);
     double time = Timer.getFPGATimestamp();
     if (time - startTime < Constants.timeToTurn) {
 
-      driveTrain.drive(Constants.driveSpeed);
-      intake.startRollersIntake();
+      //driveTrain.drive(Constants.driveSpeed);
+      intake.rumbleRollers(10, 2);
 
     } else if (time - startTime < Constants.endOfTurn) {
 
