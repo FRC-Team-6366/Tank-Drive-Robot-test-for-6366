@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
+
 /**
  * The methods in this class are called automatically corresponding to each
  * mode, as described in
@@ -67,8 +68,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    double speed = -XboxController.getRawAxis(4) * 0.3;
-    double turn = -XboxController.getRawAxis(1) * 0.5;
+
+ double speed = -xboxController.getRawAxis(4) * 0.3;
+    double turn = -xboxController.getRawAxis(1) * 0.5;
+
+if (xboxController.getAButtonPressed()){
+speed=speed/2;
+turn=speed/2;
+}
+
+
+
+   
 
     System.out.println("Speed: " + speed + "  Turn: " + turn);
 
