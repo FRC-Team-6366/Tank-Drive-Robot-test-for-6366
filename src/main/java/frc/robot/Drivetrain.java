@@ -2,7 +2,10 @@ package frc.robot;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-
+/**
+ * Tells the controller what buttons do what and how the robot uses its wheels
+ * @author Emerson
+ */
 public class Drivetrain {
     
   public SparkMax leftMotor1 = new SparkMax(1, MotorType.kBrushed);

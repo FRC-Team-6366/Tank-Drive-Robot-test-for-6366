@@ -4,9 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.XboxController;
+
 
 /**
  * The methods in this class are called automatically corresponding to each
@@ -23,8 +25,9 @@ public class Robot extends TimedRobot {
    */
   public Robot() {
   }
+  
 
-  private Joystick joystick = new Joystick(0);
+  private XboxController xboxController = new XboxController(0);
   private Drivetrain driveTrain = new Drivetrain();
   private Intake intake = new Intake(Constants.intakeMotorId, Constants.intakeSpeed);
 
@@ -69,8 +72,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    double speed = -joystick.getRawAxis(4) * 0.3;
-    double turn = -joystick.getRawAxis(1) * 0.5;
+
+ double speed = -xboxController.getRawAxis(4) * 0.3;
+    double turn = -xboxController.getRawAxis(1) * 0.5;
+
+if (xboxController.getAButton()){
+speed=speed/2;
+turn=turn/2;
+}
+
+
+
+   
 
     System.out.println("Speed: " + speed + "  Turn: " + turn);
 
