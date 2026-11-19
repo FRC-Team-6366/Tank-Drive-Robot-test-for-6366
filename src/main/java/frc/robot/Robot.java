@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
 
 if (xboxController.getAButtonPressed()){
 speed=speed/2;
-turn=speed/2;
+turn=turn/2;
 }
 
 
