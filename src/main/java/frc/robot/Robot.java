@@ -57,7 +57,7 @@ driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn3){
 driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn3){
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+      driveTrain.drive(Constants.turnSpeed, -Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn4){
       driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn4){
