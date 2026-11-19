@@ -11,8 +11,8 @@ public class Constants {
     public static double endOfTurn2 = 4.55;
     public static double timeToTurn3 = 5.45;
     public static double endOfTurn3 = 6.4;
-    public static double timeToTurn4 = 6.45;
-    public static double endOfTurn4 = 7.3;
+    public static double timeToTurn4 = 8.2;
+    public static double endOfTurn4 = 9.1;
 
 
 
