@@ -30,7 +30,6 @@ public class Intake {
             speed = 1.0;
         };
         
-
         if (speed < -1.0) {
             speed = -1.0;   // ensures we arent sending a speed that the motors are unable to handle
         };
