@@ -47,27 +47,32 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     double time = Timer.getFPGATimestamp();
     if (time - startTime < Constants.timeToTurn) {
-      
+
       driveTrain.drive(Constants.driveSpeed);
       intake.rumbleRollers(10, 2);
       
     } else if (time - startTime < Constants.endOfTurn) {
-      
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
-      
+
+      driveTrain.drive(Constants.turnSpeed + 0.1, Constants.turnSpeed);
+
     } else if(time - startTime < Constants.timeToTurn2){
       driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn2){
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+driveTrain.drive(Constants.turnSpeed + 0.1 , Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn3){
       driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn3){
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+      driveTrain.drive(Constants.turnSpeed + 0.1 , Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn4){
       driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn4){
-      driveTrain.drive(-Constants.turnSpeed,Constants.turnSpeed);
-    }else{
+      driveTrain.drive(Constants.turnSpeed + 0.1 ,Constants.turnSpeed);
+    }else if(time - startTime < Constants.timeToTurn5){
+driveTrain.drive(Constants.driveSpeed);
+    }else if(time - startTime < Constants.endOfTurn5){
+driveTrain.drive(Constants.turnSpeed + 0.1 , Constants.turnSpeed);
+  }else{
+
       driveTrain.drive(0, 0);
       intake.stopRollers(); 
     }
