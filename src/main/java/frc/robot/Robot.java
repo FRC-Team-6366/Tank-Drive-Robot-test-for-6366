@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
     double time = Timer.getFPGATimestamp();
     if (time - startTime < Constants.timeToTurn) {
 
-      //driveTrain.drive(Constants.driveSpeed);
+      driveTrain.drive(Constants.driveSpeed);
       intake.rumbleRollers(10, 2);
 
     } else if (time - startTime < Constants.endOfTurn) {
