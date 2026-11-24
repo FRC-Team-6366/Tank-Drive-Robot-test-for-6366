@@ -83,6 +83,14 @@ driveTrain.drive(Constants.driveSpeed);
   @Override
   public void teleopPeriodic() {
 
+    if (xboxController.getLeftTriggerAxis() > .2) {
+      intake.startRollersIntake();
+    } else if (xboxController.getLeftBumperButtonPressed()) {
+      intake.rumbleRollers(2, .2);
+    } else {
+      intake.stopRollers();
+    }
+
  double speed = -xboxController.getRawAxis(4) * 0.3;
     double turn = -xboxController.getRawAxis(1) * 0.5;
 
