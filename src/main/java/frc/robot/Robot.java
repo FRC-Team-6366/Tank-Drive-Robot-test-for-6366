@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
   private XboxController xboxController = new XboxController(0);
   private Drivetrain driveTrain = new Drivetrain();
   private Intake intake = new Intake(Constants.intakeMotorId, Constants.intakeSpeed);
+  public Arm arm = new Arm();
   
   private double startTime;
   
@@ -80,7 +81,13 @@ public class Robot extends TimedRobot {
   
   @Override
   public void teleopPeriodic() {
-    
+     if (xboxController.getBButton()){
+      arm.rotatearm(1.0);
+     } else if(xboxController.getYButton()){
+      arm.rotatearm(-1.0);}
+      else {
+        arm.rotatearm(0);
+      }
     if (xboxController.getLeftTriggerAxis() > .2) {
       intake.startRollersIntake();
     } else if (xboxController.getRightTriggerAxis() > .2) {
