@@ -85,7 +85,9 @@ driveTrain.drive(Constants.driveSpeed);
 
     if (xboxController.getLeftTriggerAxis() > .2) {
       intake.startRollersIntake();
-    } else if (xboxController.getLeftBumperButtonPressed()) {
+    } else if (xboxController.getRightTriggerAxis() > .2) {
+      intake.startRollersOuttake();
+    } else if (xboxController.getLeftBumperButton()) {
       intake.rumbleRollers(2, .2);
     } else {
       intake.stopRollers();
