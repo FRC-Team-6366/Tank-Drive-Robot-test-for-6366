@@ -54,24 +54,24 @@ public class Robot extends TimedRobot {
 
     } else if (time - startTime < Constants.endOfTurn) {
 
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+      driveTrain.drive(Constants.turnSpeed + 0.6, Constants.turnSpeed);
 
     } else if(time - startTime < Constants.timeToTurn2){
 driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn2){
-driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+driveTrain.drive(Constants.turnSpeed + 0.6 , Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn3){
 driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn3){
-      driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+      driveTrain.drive(Constants.turnSpeed + 0.6 , Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn4){
       driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn4){
-      driveTrain.drive(-Constants.turnSpeed,Constants.turnSpeed);
+      driveTrain.drive(Constants.turnSpeed + 0.6 ,Constants.turnSpeed);
     }else if(time - startTime < Constants.timeToTurn5){
 driveTrain.drive(Constants.driveSpeed);
     }else if(time - startTime < Constants.endOfTurn5){
-driveTrain.drive(-Constants.turnSpeed, Constants.turnSpeed);
+driveTrain.drive(Constants.turnSpeed + 0.6 , Constants.turnSpeed);
   }else{
 
       driveTrain.drive(0, 0);
