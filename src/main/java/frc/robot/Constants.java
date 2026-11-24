@@ -16,6 +16,8 @@ public class Constants {
     public static double endOfTurn3 = timeToTurn3 + 0.95;
     public static double timeToTurn4 = endOfTurn3 + 0.9;
     public static double endOfTurn4 = timeToTurn4 + 1.8;
+    public static double timeToTurn5 = endOfTurn4 + 0.9;
+    public static double endOfTurn5 = timeToTurn5 + 0.95;
     public static double driveSpeed = 0.6;
     public static double turnSpeed = 0.3;
 
