@@ -26,6 +26,7 @@ public class Constants {
     public static int intakeMotorId = 3;
     public static double intakeSpeed = 0.6;
     public static MotorType intakeMotorType = MotorType.kBrushed;
+    public static double rumbleInterval = 0.3;
 
     public static double armleftMotorid=4;
     public static double armrightMotorid=5;
